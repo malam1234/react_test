@@ -19,6 +19,19 @@ const style = {
   pb: 3,
 };
 
+const cornerButtonStyle = {
+  position: 'absolute',
+  top: 8,
+  right: 8,
+  minWidth: 32,
+  width: 32,
+  height: 32,
+  borderRadius: '50%',
+  fontSize: 20,
+  lineHeight: 1,
+  padding: 0,
+  zIndex: 1,
+};
 
 const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: () => void }) => {
   const CREATE_BOOKS = gql`
@@ -40,9 +53,11 @@ const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: ()
   const [date, setDate] = useState('');
 
   const [success, setSuccess] = useState(false);
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = await addBook({ t: title, a: author, d: publishedDate });
+
+    const result = await addBook({ t: title, a: author, d: publishedDate, c: date });
     if (result.data && result.data.createBook && result.data.createBook.book) {
       setSuccess(true);
       setTitle("");
@@ -60,23 +75,18 @@ const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: ()
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: 700 }}>
           <h2>Create Book</h2>
 
-          <Button onClick={handleClose}>X</Button>
+          <Button onClick={handleClose} sx={cornerButtonStyle}>X</Button>
           <p>
             Create a new book by filling out the form below.
           </p>
           <form onSubmit={onSubmit}>
-
             <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}>
               <TextField label="Title" value={title} onChange={e => setTitle(e.target.value)} variant="standard" required />
-
               <TextField type="date" value={publishedDate} onChange={e => setPublishedDate(e.target.value)} label="Published Date" InputLabelProps={{ shrink: true }} required />
-
             </Box>
             <Box
               component="form"
