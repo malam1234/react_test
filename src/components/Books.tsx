@@ -1,6 +1,7 @@
 import React from "react";
 import CreateBookModal from "./ModalBox/CreateBookModal";
 import { useQuery } from "urql";
+import BooksTableView from "./BooksTableView";
 
 const allBooks = `
 query allBooks {
@@ -27,19 +28,7 @@ const Books = () => {
         <>
             <div style={{ padding: 24 }}>
                 <button onClick={handleOpen}>Create Book</button>
-                <h1>Books</h1>
-                <p>List of books will be displayed here.</p>
-                {fetching && <p>Loading...</p>}
-                {error && <p>Error: {error.message}</p>}
-                {data && data.allBooks && (
-                    <ul>
-                        {data.allBooks.map((book: any) => (
-                            <li key={book.id}>
-                                {book.title}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <BooksTableView data={data} error={error} fetching={fetching} />
             </div>
             <CreateBookModal open={open} handleClose={handleClose} />
         </>

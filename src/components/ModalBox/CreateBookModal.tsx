@@ -17,11 +17,6 @@ const style = {
   pb: 3,
 };
 
-// interface ModalBoxProps {
-//   open: boolean;
-//   handleClose: () => void;
-// }
-
 const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: () => void }) => {
   return (
     <div>
@@ -33,14 +28,30 @@ const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: ()
       >
         <Box sx={{ ...style, width: 700 }}>
           <h2 id="child-modal-title">Create Book</h2>
+            <Button onClick={handleClose}>X</Button>
           <p id="child-modal-description">
             Create a new book by filling out the form below.
           </p>
           <form>
-            <TextField type="text" label="Name" variant="standard" />
-            <TextField type="date" label="Date" variant="standard" InputLabelProps={{ shrink: true }} />
+            <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}>
+              <TextField label="Name" variant="standard" />
+              <TextField type="date" label="Date Created" InputLabelProps={{ shrink: true }} />
+
+            </Box>
+            <div>
+              <Box
+                component="form"
+                sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField variant="standard" label="Author" />
+
+                <TextField type="date" label="Published Date" InputLabelProps={{ shrink: true }} />
+              </Box>
+            </div>
+                   <Button onClick={handleClose} variant="contained">Create</Button>
           </form>
-          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </div>
