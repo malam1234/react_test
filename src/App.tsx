@@ -4,7 +4,7 @@ import { createClient, Provider, cacheExchange, fetchExchange } from 'urql';
 
 const client = createClient({
     // url: 'https://countries.trevorblades.com/',
-    url: 'http://localhost:8000/graphql',
+    url: 'http://localhost:8000/graphql/',
     exchanges: [cacheExchange, fetchExchange],
 });
 

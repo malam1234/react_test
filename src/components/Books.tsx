@@ -8,6 +8,9 @@ query allBooks {
   allBooks {
     id
     title
+    author
+    date
+    publishedDate
   }
 }
 `;
