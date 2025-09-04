@@ -61,11 +61,7 @@ const CreateBookModal = ({ open, handleClose }: { open: boolean, handleClose: ()
               <TextField label="Title" value={title} onChange={e => setTitle(e.target.value)} variant="standard" required />
               <TextField type="date" value={publishedDate} onChange={e => setPublishedDate(e.target.value)} label="Published Date" InputLabelProps={{ shrink: true }} required />
             </Box>
-            <Box
-              component="form"
-              sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
-              noValidate
-              autoComplete="off"
+            <Box sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
             >
               <TextField variant="standard" value={author} label="Author" onChange={e => setAuthor(e.target.value)} />
 
