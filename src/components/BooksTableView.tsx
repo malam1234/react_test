@@ -5,8 +5,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Tab } from '@mui/material';
 
-const BooksTableView = ({ data, error, fetching }: { data: any, error: any, fetching: boolean }) => {
+const BooksTableView = ({ columns, data, error, fetching }: { columns: Array<{ key: string; label: string; align?: string }>, data: any, error: any, fetching: boolean }) => {
 
     return (
         <>
